@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Your Profile
+{% endblock %}
+
+{% block content %}
+           <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Your Challenges</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Completed Challenges
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Challenge Name</th>
+                                            <th>Points Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for challenge_entry in completed_challenges %}
+                                        <tr>
+                                            <td>{{ challenge_entry.challenge.title }}</td>
+                                            <td>{{ challenge_entry.challenge.points }}</td>    
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            Total Score
+                        </div>
+                        <div class="panel-body" style="font-size:xx-large">
+                            {{ total_score }}
+                        </div>
+                        <div class="panel-footer">
+                            Challenges completed: {{ completed_challenges.count }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Available Challenges
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Challenge Name</th>
+                                            <th>Points Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for challenge in challenges %}
+                                        <tr>
+                                            <td><a href="/challenge/{{ challenge.id }}/">{{ challenge.title }}</a></td>
+                                            <td>{{ challenge.points }}</td>    
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+{% endblock %}
