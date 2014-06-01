@@ -6,9 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 from challenges.models import Challenge, ChallengeEntry
 
-def index(request):
-    return render_to_response("index.html")
-
 @login_required
 def profile(request):
     render_dict = {}

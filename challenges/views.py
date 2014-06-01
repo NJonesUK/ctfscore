@@ -10,14 +10,18 @@ from challenges.forms import AnswerForm
 @login_required
 def leaderboard(request):
     render_dict = {}
-    render_dict['user_scores'] = {}
+    render_dict['user_scores'] = []
     render_dict['users'] = User.objects.all()
 
     for user in render_dict['users'] :
-        render_dict['user_scores'][user] = 0
         completed = ChallengeEntry.objects.filter(user=user)
+        total = 0
         for challenge in completed:
-            render_dict['user_scores'][user] += challenge.challenge.points
+            total += challenge.challenge.points
+        render_dict['user_scores'].append((user, total))
+
+    render_dict['user_scores'] = sorted(render_dict['user_scores'], key=lambda tup: tup[1], reverse=True)
+
 
     print render_dict
     return render_to_response("leaderboard.html", render_dict)

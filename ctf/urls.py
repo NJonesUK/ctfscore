@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     url(r'^accounts/profile', users.views.profile),
     url(r'^leaderboard', challenges.views.leaderboard),
     url(r'^challenge/(?P<challenge_id>\d+)/$', challenges.views.challenge, name='detail'),
-    url(r'^$', users.views.index),
+    url(r'^$', users.views.profile),
 
 )
